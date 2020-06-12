@@ -20,7 +20,7 @@ public enum ErgastAPI {
                                 offset: String? = nil,
                                 completion: @escaping (Result<Circuits, ErgastAPIError>) -> Void) {
         
-        URLSession.shared.fetch(.circuits,
+        URLSession.shared.fetch(.circuits(season),
                                for: season,
                                limit: limit,
                                offset: offset) { result in
@@ -37,7 +37,7 @@ public enum ErgastAPI {
                                    offset: String? = nil,
                                    completion: @escaping (Result<Circuits, ErgastAPIError>) -> Void) {
         
-        URLSession.shared.fetch(.circuits,
+        URLSession.shared.fetch(.circuits(nil),
                                 limit: limit,
                                 offset: offset) { result in
             completion(result)
@@ -69,7 +69,7 @@ public enum ErgastAPI {
                                        offset: String? = nil,
                                        completion: @escaping (Result<Constructors, ErgastAPIError>) -> Void) {
         
-        URLSession.shared.fetch(.constructors,
+        URLSession.shared.fetch(.constructors(nil),
                                 limit: limit,
                                 offset: limit) { result in
             completion(result)
@@ -87,7 +87,7 @@ public enum ErgastAPI {
                                     offset: String? = nil,
                                     completion: @escaping (Result<Constructors, ErgastAPIError>) -> Void) {
         
-        URLSession.shared.fetch(.constructors,
+        URLSession.shared.fetch(.constructors(season),
                                 for: season,
                                 limit: limit,
                                 offset: limit) { result in
@@ -106,7 +106,7 @@ public enum ErgastAPI {
                                     offset: String? = nil,
                                     completion: @escaping (Result<RaceSchedule, ErgastAPIError>) -> Void) {
 
-        URLSession.shared.fetch(.raceSchedule,
+        URLSession.shared.fetch(.raceSchedule(season),
                                 for: season,
                                 limit: limit,
                                 offset: offset) { result in
@@ -125,7 +125,7 @@ public enum ErgastAPI {
                                    offset: String? = nil,
                                    completion: @escaping(Result<RaceResults, ErgastAPIError>) -> Void) {
         
-        URLSession.shared.fetch(.raceResults,
+        URLSession.shared.fetch(.raceResults(season),
                                 for: season,
                                 limit: limit,
                                 offset: offset) { result in
@@ -144,7 +144,7 @@ public enum ErgastAPI {
                                          offset: String? = nil,
                                          completion: @escaping (Result<QualifyingResults, ErgastAPIError>) -> Void) {
         
-        URLSession.shared.fetch(.qualifyingResults,
+        URLSession.shared.fetch(.qualifyingResults(season),
                                 for: season,
                                 limit: limit,
                                 offset: offset) { result in
@@ -165,7 +165,7 @@ public enum ErgastAPI {
                                 offset: String? = nil,
                                 completion: @escaping (Result<PitStops, ErgastAPIError>) -> Void) {
         
-        URLSession.shared.fetch(.pitStops,
+        URLSession.shared.fetch(.pitStops(season, round),
                                 for: season,
                                 round: round,
                                 limit: limit,
@@ -181,10 +181,10 @@ public enum ErgastAPI {
                             offset: String? = nil,
                             completion: @escaping (Result<Laps, ErgastAPIError>) -> Void) {
         
-        URLSession.shared.fetch(.lapTimes(lap),
+        URLSession.shared.fetch(.lapTimes(season, race: round, lap: lap),
                                 for: season,
                                 round: round, limit: limit, offset: offset) { result in
-                                    completion(result)
+            completion(result)
         }
     }
 }
